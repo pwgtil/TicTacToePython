@@ -1,1 +1,1 @@
-print("x o x\no x o\nx x o")
+print("X O X\nO X O\nX X O")
