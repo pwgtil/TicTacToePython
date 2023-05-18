@@ -1,0 +1,1 @@
+print("x o x\no x o\nx x o")
