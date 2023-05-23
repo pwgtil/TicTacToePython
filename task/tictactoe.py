@@ -46,13 +46,12 @@ def make_step(g, player):
             print("This cell is occupied! Choose another one!")
             continue
         else:
-            t = list(g)
-            t[y - 1 + (x - 1) * 3] = player
-            return "".join(t)
+            g[y - 1 + (x - 1) * 3] = player
+            break
 
 
-symbols = input().replace("_", " ")
+symbols = list(input().replace("_", " "))
 set_board(symbols)
-symbols = make_step(symbols, "X")
+make_step(symbols, "X")
 set_board(symbols)
 # print(get_game_state(symbols))
