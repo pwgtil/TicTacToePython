@@ -29,6 +29,30 @@ def get_game_state(g):
         return "O wins"
 
 
+def make_step(g, player):
+    while True:
+        user_input = input().split(" ")
+        x, y = [0, 0]
+        try:
+            x = int(user_input[0])
+            y = int(user_input[1])
+        except ValueError:
+            print("You should enter numbers!")
+            continue
+        if x not in range(1, 4) or y not in range(1, 4):
+            print("Coordinates should be from 1 to 3!")
+            continue
+        if g[y - 1 + (x - 1) * 3] != " ":
+            print("This cell is occupied! Choose another one!")
+            continue
+        else:
+            t = list(g)
+            t[y - 1 + (x - 1) * 3] = player
+            return "".join(t)
+
+
 symbols = input().replace("_", " ")
 set_board(symbols)
-print(get_game_state(symbols))
+symbols = make_step(symbols, "X")
+set_board(symbols)
+# print(get_game_state(symbols))
