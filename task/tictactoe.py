@@ -20,7 +20,7 @@ def get_game_state(g):
         return "Impossible"
     if three_o_count == three_x_count == 0:
         if no_of_x + no_of_o < 9:
-            return "Game not finished"
+            return "Continue"
         else:
             return "Draw"
     if three_x_count == 1:
@@ -32,7 +32,6 @@ def get_game_state(g):
 def make_step(g, player):
     while True:
         user_input = input().split(" ")
-        x, y = [0, 0]
         try:
             x = int(user_input[0])
             y = int(user_input[1])
@@ -50,8 +49,17 @@ def make_step(g, player):
             break
 
 
-symbols = list(input().replace("_", " "))
+symbols = list("         ")
+players = ["X", "O"]
+counter = 0
 set_board(symbols)
-make_step(symbols, "X")
-set_board(symbols)
-# print(get_game_state(symbols))
+while True:
+    player = players[counter % 2]
+    counter += 1
+    make_step(symbols, player)
+    set_board(symbols)
+    status = get_game_state(symbols)
+    if status != "Continue":
+        print(status)
+        break
+
